@@ -12,7 +12,6 @@
     <!-- Adding the CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootswatch.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
 <body>
@@ -20,6 +19,25 @@
         <div class="jumbotron text-center">
             <h1>MeetPoint</h1>
             <p>Where should we meet?</p>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Some Peeps</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="startLocation">Location (include address and city/state. e.g 123 Sesame St, CA)</label>
+                        <input type="text" class="form-control" id="startLocation">
+                    </div>
+                    <button type="button" class="btn btn-success" id="current-btn" onclick="getLocation()">Get Current Location</button>
+                    <button type="button" class="btn btn-success" id="submit-btn">Submit</button>
+                </form>
+            </div>
         </div>
         <div class="panel panel-warning">
             <div class="panel-heading">
@@ -36,25 +54,9 @@
                     <tbody>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">Add Some Peeps</h3>
-            </div>
-            <div class="panel-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="train-name">Name</label>
-                        <input type="text" class="form-control" id="train-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="destination">Their Location</label>
-                        <input type="text" class="form-control" id="destination">
-                    </div>
-
-                    <button type="button" class="btn btn-success" id="submit-btn">Submit</button>
-                </form>
+                <div>
+                    <button type="button" class="btn btn-success" id="results-btn">Get Results</button>
+                </div>
             </div>
         </div>
     </div>
