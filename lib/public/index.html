@@ -8,83 +8,149 @@
 
 <body>
 
-<h2>Yelp</h2>
-<div id="yelp"></div>
+<div id="yelp">
+  <h2>Yelp</h2>
+  <form>
+    <label for="yelp-input">Search for a </label>
+    <input id="yelp-term" type="text" placeholder="e.g. cafe, bar, restaurant, etc.">
+    <label for ="yelp-loc">near </label>
+    <input id="yelp-loc" type="text" placeholder="Address or city">
+    <label for="radius">for a radius of </label>
+    <select name="radius" id="radius-input">
+      <option value="2">2 miles</option>
+      <option value="5">5 miles</option>
+      <option value="10">10 miles</option>
+    </select>
+    <input id="yelp-btn" type="submit" value="Search">
+  </form>
+  <div>
+    <ul id="yelp-results"></ul>
+  </div>
+</div>
 
-<h2>Flight Status</h2>
-<div id="flightstats"></div>
+<div id="geocode">
+  <h2>Geocode</h2>
+  <input id="geocode-input" type="text" placeholder="Address">
+  <input id="geocode-btn" type="submit" value="Get Coordinates">
+  <table id="geocode-results">
+    <tr>
+      <th>Address</th>
+      <th>Coordinates</th>
+    </tr>
+  </table>
+</div>
 
-<h2>Food2Fork</h2>
-<div id="food2fork"></div>
+<div id="food2fork">
+  <h2>Food2Fork</h2>
+  <input id="address-populator" type="text" placeholder="Address">
+</div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <!-- YELP -->
 <script>
-  // GLOBAL var for access token
-  var accessToken = '';
 
-  // do this one time
-  $.ajax({
-    url: '/api/yelp/oauth2/token',
-    method: 'POST',
-    data: {
-      grant_type: 'client_credentials',
-      client_id: 'DKj-IPb7Z7qjDMphovCP9g',
-      client_secret: 'nL0yFJUv5cA95FmDE6Fq5B1jo4ss6z2dGpvvK5XFM9T6ii0ehmP6dypGBzA4rxuj'
+  $("#yelp-btn").on("click", function(e) {
+
+    e.preventDefault();
+
+    function getMeters(i) {
+      return i*1609.344;
     }
-  }).done(function (response) {
-    console.log(response);
 
-    // update global variable for your accessToken
-    accessToken = response.access_token;
+    var yelpURL = "/api/yelp/v3/businesses/search";
+    var term = $("#yelp-term").val();
+    var location = $("#yelp-loc").val();
+    var radiusMiles = $("#radius-input option:selected").attr("value");
+    console.log(radiusMiles);
+    var radiusMeters = getMeters(radiusMiles);
+    console.log(radiusMeters);
+    // Yelp takes radius in meters
 
+    yelpURL += "?" + $.param({
+        "term": term,
+        "location": location,
+        "distance": radiusMeters //not sure if this works properly; check again later
+      });
+    // GLOBAL var for access token
+    var accessToken = "dansSf9_Muex3BxxaCcbl3S2Up3UnypA";
+
+    // do this one time
     $.ajax({
-      // '/api/yelp/' + everything in the examples after 'https://api.yelp.com/' i.e.
-      url: '/api/yelp/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.399972',
-      method: 'GET',
-      headers: {
-        // use your access token in every API request to proxy
-        Authorization: 'Bearer ' + accessToken
+      url: '/api/yelp/oauth2/token',
+      method: 'POST',
+      data: {
+        grant_type: 'client_credentials',
+        client_id: 'DKj-IPb7Z7qjDMphovCP9g',
+        client_secret: 'nL0yFJUv5cA95FmDE6Fq5B1jo4ss6z2dGpvvK5XFM9T6ii0ehmP6dypGBzA4rxuj'
       }
     }).done(function (response) {
-      $('#yelp').html(JSON.stringify(response, null, 2))
+      console.log(response);
+
+      // update global variable for your accessToken
+      accessToken = response.access_token;
+
+      $.ajax({
+        // '/api/yelp/' + everything in the examples after 'https://api.yelp.com/' i.e.
+        url: yelpURL,
+        method: 'GET',
+        headers: {
+          // use your access token in every API request to proxy
+          Authorization: 'Bearer ' + accessToken
+        }
+      }).done(function (response) {
+        console.log(response);
+
+      });
+    }).fail(function (err) {
+      console.error(err)
     });
-  }).fail(function (err) {
-    console.error(err)
   });
 
 </script>
 
-<!-- FLIGHTSTATS -->
+<!-- GEOCODE -->
 <script>
-  $.ajax({
-    // '/api/flightstats/' + everything in the examples after '/v2/json/' i.e.
-    url: '/api/flightstats/flight/status/AA/100/arr/2017/03/30',
-    method: 'GET'
-  }).done(function (response) {
-    console.log(response);
-    $('#flightstats').html(JSON.stringify(response, null, 2))
-  }).fail(function (err) {
-    console.error(err)
+
+  $("#geocode-btn").on("click", function(e) {
+
+    e.preventDefault();
+
+    var geocodeURL = "/api/geocode";
+    var address = $("#geocode-input").val();
+    var geocodeKey = "AIzaSyBDX_eXekJVgS9WjggIhZRQbvNXlbFQDsc";
+
+    geocodeURL += "?" + $.param({
+        "api_key": geocodeKey,
+        "address": address
+      });
+
+    $.ajax({
+      // '/api/flightstats/' + everything in the examples after '/v2/json/' i.e.
+      url: geocodeURL,
+      method: 'GET'
+    }).done(function (response) {
+      console.log(response);
+      var formattedAddress = response.results[0].formatted_address;
+      var lat = response.results[0].geometry.location.lat;
+      var lng = response.results[0].geometry.location.lng;
+      var coordinates = "(" + lat + ", " + lng + ")";
+
+      $("#geocode-results").append("<tr><td>" + formattedAddress + "</td><td>" + coordinates + "</td></tr>");
+
+    }).fail(function (err) {
+      console.error(err)
+    });
+
+    $("#geocode-input").val("");
+
   });
 </script>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT77QjZ43q2eTZZSBa3P2h4m1oYujQDSE&libraries=places">
 
-<!-- FOOD2FORK -->
-<script>
-  $.ajax({
-    // '/api/food2fork/' + everything in the examples after '/api/' i.e.
-    url: '/api/food2fork/search?key=1f35aa9b21774c9228255e0d0e0844f2&q=shredded%20chicken',
-    method: 'GET'
-  }).done(function (responseStr) {
-    console.log(responseStr);
-    // parse the string response with JSON.parse
-    var response = JSON.parse(responseStr)
-    $('#food2fork').html(JSON.stringify(response, null, 2))
-  }).fail(function (err) {
-    console.error(err)
-  });
+  var autocomplete = new google.maps.places.Autocomplete("#address-populator");
+
 </script>
 
 </body>
