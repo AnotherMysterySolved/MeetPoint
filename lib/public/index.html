@@ -15,7 +15,7 @@
     <input id="yelp-term" type="text" placeholder="e.g. cafe, bar, restaurant, etc.">
     <label for ="yelp-loc">near </label>
     <input id="yelp-loc" type="text" placeholder="Address or city">
-    <label for="radius">for a radius of </label>
+    <label for="radius">within a radius of </label>
     <select name="radius" id="radius-input">
       <option value="2">2 miles</option>
       <option value="5">5 miles</option>
@@ -38,11 +38,6 @@
       <th>Coordinates</th>
     </tr>
   </table>
-</div>
-
-<div id="food2fork">
-  <h2>Food2Fork</h2>
-  <input id="address-populator" type="text" placeholder="Address">
 </div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -112,9 +107,9 @@
 <!-- GEOCODE -->
 <script>
 
-  $("#geocode-btn").on("click", function(e) {
+  $("#geocode-btn").on("click", function(event) {
 
-    e.preventDefault();
+    event.preventDefault();
 
     var geocodeURL = "/api/geocode";
     var address = $("#geocode-input").val();
@@ -143,13 +138,7 @@
     });
 
     $("#geocode-input").val("");
-
   });
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT77QjZ43q2eTZZSBa3P2h4m1oYujQDSE&libraries=places">
-
-  var autocomplete = new google.maps.places.Autocomplete("#address-populator");
 
 </script>
 
