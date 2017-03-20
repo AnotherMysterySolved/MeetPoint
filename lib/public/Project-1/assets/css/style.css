@@ -1,3 +1,7 @@
 body {
 	background-color: white !important;
 }
+
+#map {
+  height: 30vw;
+}
