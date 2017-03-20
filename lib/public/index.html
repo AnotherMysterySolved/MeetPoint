@@ -6,6 +6,14 @@
     <title>API Proxy Starter</title>
 </head>
 
+<style>
+
+  table, th, td {
+    border: 1px solid black;
+  }
+
+</style>
+
 <body>
 
 <div id="yelp">
@@ -24,7 +32,13 @@
     <input id="yelp-btn" type="submit" value="Search">
   </form>
   <div>
-    <ul id="yelp-results"></ul>
+    <table id="yelp-results">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>For more information</th>
+      </tr>
+    </table>
   </div>
 </div>
 
@@ -59,14 +73,13 @@
     var term = $("#yelp-term").val();
     var location = $("#yelp-loc").val();
     var radiusMiles = $("#radius-input option:selected").attr("value");
-    console.log(radiusMiles);
     var radiusMeters = getMeters(radiusMiles);
-    console.log(radiusMeters);
     // Yelp takes radius in meters
 
     yelpURL += "?" + $.param({
         "term": term,
         "location": location,
+        "limit": 10,
         "distance": radiusMeters //not sure if this works properly; check again later
       });
     // GLOBAL var for access token
@@ -74,12 +87,12 @@
 
     // do this one time
     $.ajax({
-      url: '/api/yelp/oauth2/token',
-      method: 'POST',
+      url: "/api/yelp/oauth2/token",
+      method: "POST",
       data: {
-        grant_type: 'client_credentials',
-        client_id: 'DKj-IPb7Z7qjDMphovCP9g',
-        client_secret: 'nL0yFJUv5cA95FmDE6Fq5B1jo4ss6z2dGpvvK5XFM9T6ii0ehmP6dypGBzA4rxuj'
+        grant_type: "client_credentials",
+        client_id: "DKj-IPb7Z7qjDMphovCP9g",
+        client_secret: "nL0yFJUv5cA95FmDE6Fq5B1jo4ss6z2dGpvvK5XFM9T6ii0ehmP6dypGBzA4rxuj"
       }
     }).done(function (response) {
       console.log(response);
@@ -90,14 +103,19 @@
       $.ajax({
         // '/api/yelp/' + everything in the examples after 'https://api.yelp.com/' i.e.
         url: yelpURL,
-        method: 'GET',
+        method: "GET",
         headers: {
           // use your access token in every API request to proxy
-          Authorization: 'Bearer ' + accessToken
+          Authorization: "Bearer " + accessToken
         }
       }).done(function (response) {
-        console.log(response);
+        for (i = 0; i < response.businesses.length; i++) {
+          var businessName = response.businesses[i].name;
+          var businessAddress = response.businesses[i].location.display_address[0] + ", " + response.businesses[i].location.display_address[1];
+          var yelpLink = response.businesses[i].url;
 
+          $("#yelp-results").append("<tr><td>" + businessName + "</td></td><td>" + businessAddress + "</td><td><a href='" + yelpLink + "' target='_blank'>Go to Yelp Page</a></td></tr>");
+        }
       });
     }).fail(function (err) {
       console.error(err)
@@ -125,7 +143,7 @@
     $.ajax({
       // '/api/flightstats/' + everything in the examples after '/v2/json/' i.e.
       url: geocodeURL,
-      method: 'GET'
+      method: "GET"
     }).done(function (response) {
       console.log(response);
       var formattedAddress = response.results[0].formatted_address;
