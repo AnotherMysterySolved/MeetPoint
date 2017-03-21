@@ -109,6 +109,7 @@
           Authorization: "Bearer " + accessToken
         }
       }).done(function (response) {
+      console.log(response);
         for (i = 0; i < response.businesses.length; i++) {
           var businessName = response.businesses[i].name;
           var businessAddress = response.businesses[i].location.display_address[0] + ", " + response.businesses[i].location.display_address[1];
