@@ -26,18 +26,37 @@
     margin-bottom: 1vw;
   }
 
+  span {
+    color: blue;
+  }
+
+  #div-create-group {
+    display: none;
+  }
+
 </style>
 
 <body>
 
-<div id="user-profile">
-  <p id="user-name"></p>
-  <p id="user-email"></p>
+<div id="div-user-profile">
+  <p>You are logged in as: <span id="display-name"></span></p>
+  <p>Your e-mail address is: <span id="user-email"></span></p>
+  <p>Your UID is: <span id="user-uid"></span></p>
 </div>
 
 <div>
-  <input id="btn-create-group" type="submit" value="Create Group">
-  <input id="btn-logout" type="submit" value="Logout">
+  <form>
+    <div id="div-create-group">
+      What do you want to name your group?
+      <input id="group-name" type="text" placeholder="Group name">
+      What is the purpose of the meeting?
+      <input id="group-purpose" type="text" placeholder="Purpose">
+      What are you looking for?
+      <input id="group-place" type="text" placeholder="e.g. cafe, library, restaurant, bar, etc.">
+    </div>
+    <input id="btn-create-group" type="submit" value="Create Group">
+    <input id="btn-logout" type="submit" value="Logout">
+  </form>
 </div>
 
 </body>

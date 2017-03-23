@@ -28,6 +28,9 @@
     height: 20vw;
   }*/
 
+  #div-display-name, #div-credentials, #btn-signup-cancel, #btn-login-cancel {
+    display: none;
+  }
 
 </style>
 
@@ -41,19 +44,19 @@
 
 <div>
   <form>
-    <div id="display-name">
+    <div id="div-display-name">
       Display name:
       <input id="input-name" name="name" type="text" placeholder="Name">
     </div>
-    <div id="credentials">
+    <div id="div-credentials">
       Email:
       <input id="input-email" name="email" type="email" placeholder="Email">
       Password:
       <input id="input-pwd" name="pwd" type="password" placeholder="Password">
     </div>
-    <input id="btn-signup" type="submit" value="Create Account">
+    <input id="btn-signup" href="profile.html" type="submit" value="Create Account">
     <input id="btn-signup-cancel" type="submit" value="Cancel">
-    <input id="btn-login" type="submit" value="Login">
+    <input id="btn-login" href="profile.html" type="submit" value="Login">
     <input id="btn-login-cancel" type="submit" value="Cancel">
   </form>
 </div>
