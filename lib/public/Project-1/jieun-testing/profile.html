@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MeetPoint</title>
+  <title>Profile Page</title>
   <!-- Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- CSS -->
@@ -26,31 +26,19 @@
     margin-bottom: 1vw;
   }
 
-  #map {
-    width: 25vw;
-    height: 20vw;
-  }
-
-
 </style>
 
 <body>
 
-<div id="div-autocomplete">
-<input id="input-loc" type="text" name="address" placeholder="Start typing here">
+<div id="user-profile">
+  <p id="user-name"></p>
+  <p id="user-email"></p>
 </div>
 
-<div id="map"></div>
-  
-
-<div id="div-user-signup">
-  <form id="form-user-signup">
-    Email: <input id="input-email" name="email" type="email" placeholder="email">
-    Password: <input id="input-pwd" name="pwd" type="password" placeholder="password">
-    <input id="btn-signup" type="submit" value="Create Account">
-    <input id="btn-login" type="submit" value="Login">
-    <input id="btn-logout" type="submit" value="Logout">
-  </form>
+<div>
+  <input id="btn-create-group" type="submit" value="Create Group">
+  <input id="btn-logout" type="submit" value="Logout">
 </div>
+
 </body>
 </html>
