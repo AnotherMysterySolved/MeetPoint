@@ -18,15 +18,13 @@ body {
   height: 30vw;
 }
 
-<<<<<<< HEAD
 .bus-image {
 	width: 5vw !important;
 	height: auto !important;
 }
-=======
 .panel {
 	box-shadow: none;
-} 
+}
 
 #group-box {
 	margin-right: 5px !important;
@@ -35,4 +33,3 @@ body {
 #navigation {
 	margin-bottom: 0px !important;
 }
->>>>>>> 7effe275f91638724e283937a029cbf65eccb371
