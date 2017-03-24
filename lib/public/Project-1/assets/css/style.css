@@ -1,7 +1,30 @@
 body {
 	background-color: white !important;
+	height:100vh;
+}
+
+
+*{
+	box-sizing: border-box;
 }
 
 #map {
-  height: 45vw;
+  height: 40vw !important;
+}
+
+.boxes {
+	padding: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+.panel {
+	box-shadow: none;
+} 
+
+#group-box {
+	margin-right: 5px !important;
+}
+
+#navigation {
+	margin-bottom: 0px !important;
 }
