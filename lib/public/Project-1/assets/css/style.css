@@ -33,3 +33,21 @@ body {
 #navigation {
 	margin-bottom: 0px !important;
 }
+
+.btn-expand {
+	background-color: orange;
+	color: white;
+}
+
+#create-group {
+	float: right;
+	display: block;
+}
+
+.panel-heading {
+	height: 60px !important;
+}
+
+h3 {
+	display: table-cell;
+}
