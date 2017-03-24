@@ -5,3 +5,8 @@ body {
 #map {
   height: 45vw;
 }
+
+.bus-image {
+	width: 5vw !important;
+	height: auto !important;
+}
