@@ -9,12 +9,16 @@ body {
 }
 
 #map {
+<<<<<<< HEAD
   height: 40vw !important;
 }
 
 .boxes {
 	padding: 0px !important;
 	margin-bottom: 0px !important;
+=======
+  height: 30vw;
+>>>>>>> Jieun
 }
 
 .panel {
