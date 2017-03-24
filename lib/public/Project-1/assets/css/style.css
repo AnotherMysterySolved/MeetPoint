@@ -1,12 +1,38 @@
 body {
 	background-color: white !important;
+	height:100vh;
+}
+
+
+*{
+	box-sizing: border-box;
 }
 
 #map {
-  height: 45vw;
+  height: 40vw !important;
 }
 
+.boxes {
+	padding: 0px !important;
+	margin-bottom: 0px !important;
+  height: 30vw;
+}
+
+<<<<<<< HEAD
 .bus-image {
 	width: 5vw !important;
 	height: auto !important;
 }
+=======
+.panel {
+	box-shadow: none;
+} 
+
+#group-box {
+	margin-right: 5px !important;
+}
+
+#navigation {
+	margin-bottom: 0px !important;
+}
+>>>>>>> 7effe275f91638724e283937a029cbf65eccb371

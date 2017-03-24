@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Testing Form for Firebase</title>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- LINK TO FIREBASE GOES HERE -->
+  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+</head>
+<body>
+
+<style>
+
+  form {
+    margin: 20px 0;
+    border: 3px solid black;
+    width: 200px;
+  }
+
+  input {
+    display: block;
+  }
+
+</style>
+
+<div id="input-user-form">
+  <form>
+    Email: <input type="text" placeholder="Type email here" id="email-input">
+    Name: <input type="text" placeholder="Type name here" id="name-input">
+    <input type="Button" id="UserReg">
+  </form>
+</div>
+
+<div id="create-group-form">
+  <form>
+    Group name: <input type="text" placeholder="Type name of group here" id="gName">
+    Group Purpose: <input type="text" placeholder="Type purpose of group here" id="gPurpose">
+    Group Location Type: <input type="text" placeholder="e.g. cafe, restaurant, bar" id="gLocType">
+    MeetPoint Lat: <input type="text" placeholder="MeetPoint Lat" id="mLat">
+    MeetPoint Lng: <input type="text" placeholder="Meetpoint Lng" id="mLng">
+    Group Member: <input type="text" placeholder="Member Name" id="gMembers">
+    <input type="Button" id = "GroupReg">
+</div>
+  
+</body>
+</html>
+<script type="text/javascript">
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDWgY0ASwb81g1E0AVT5pvTR1DiDtXx1c4",
+    authDomain: "meetpoint-8e687.firebaseapp.com",
+    databaseURL: "https://meetpoint-8e687.firebaseio.com",
+    storageBucket: "meetpoint-8e687.appspot.com",
+    messagingSenderId: "800664455878"
+  };
+  firebase.initializeApp(config);
+
+    var dataRef = firebase.database();
+
+    // Initial User Values
+    var name = "";
+    var email = "";
+
+    //Initial Group Values
+    var groupId = "" ;
+    var gName = "";
+    var gPurpose = "";
+    var gLocation = "";
+    var MeetPointLat = "";
+    var MeetPointLng = "";
+    var gMembers = "";
+
+    // Capture Button Click
+    $("#UserReg").on("click", function(event) {
+      event.preventDefault();
+
+      //Creat User
+      name = $("#name-input").val().trim();
+      email = $("#email-input").val().trim();
+      
+      // Code for the push
+      dataRef.ref("users/").push({
+
+        name: name,
+        email:email,
+        
+        //when the data is updated
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      });
+
+       alert("User successfully added");
+       console.log(name)
+    return false;
+    });
+
+    $("#GroupReg").on("click", function(event) {
+      event.preventDefault();
+
+      //Creat User
+      gName = $("#gName").val().trim();
+      gPurpose = $("#gPurpose").val().trim();
+      gLocation = $("#gLocType").val().trim();
+      MeetPointLng = $("#mLng").val().trim();
+      MeetPointLat = $("#mLat").val().trim();
+      gMembers = $("#gMembers").val().trim();
+      // Code for the push
+      dataRef.ref("groups/").push({
+
+        name: gName,
+        purpose:gPurpose,
+        location:gLocation,
+        MeetPointLat : MeetPointLat,
+        MeetPointLng : MeetPointLng,
+        gMembers : gMembers, 
+
+        
+        //when the data is updated
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      });
+
+       alert("Group successfully added");
+       console.log(name)
+    return false;
+    });
+
+    // // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
+    // dataRef.ref().on("child_added", function(childSnapshot) {
+
+    //   // Log everything that's coming out of snapshot
+    //   console.log(childSnapshot.val().name);
+    //   console.log(childSnapshot.val().name);
+    //   console.log(childSnapshot.val().email);
+    //   console.log(childSnapshot.val().age);
+    //   console.log(childSnapshot.val().comment);
+
+    //   // full list of items to the well
+    //   $("#full-member-list").append("<div class='well'><span id='name'> " + childSnapshot.val().name +
+    //     " </span><span id='email'> " + childSnapshot.val().email +
+    //     " </span><span id='age'> " + childSnapshot.val().age +
+    //     " </span><span id='comment'> " + childSnapshot.val().comment + " </span></div>");
+
+    // // Handle the errors
+    // }, function(errorObject) {
+    //   console.log("Errors handled: " + errorObject.code);
+    // });
+
+    // dataRef.ref("person/1").orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+
+    //   // Change the HTML to reflect
+    //   $("#name-display").html(snapshot.val().name);
+    //   $("#email-display").html(snapshot.val().email);
+    //   $("#age-display").html(snapshot.val().age);
+    //   $("#comment-display").html(snapshot.val().comment);
+    // });
+
+</script>

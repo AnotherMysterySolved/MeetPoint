@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MeetPoint</title>
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../assets/css/style.css"> -->
+  <!-- Moment Js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+  <!-- Google Map -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX_eXekJVgS9WjggIhZRQbvNXlbFQDsc&libraries=places"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+  <script type="text/javascript" src="../assets/javascript/jieun.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+</head>
+
+<style>
+
+  div {
+    margin-bottom: 1vw;
+  }
+
+  #map {
+    width: 25vw;
+    height: 20vw;
+  }
+
+
+</style>
+
+<body>
+
+<div id="div-autocomplete">
+<input id="input-loc" type="text" name="address" placeholder="Start typing here">
+</div>
+
+<div id="map"></div>
+  
+
+<div id="div-user-signup">
+  <form id="form-user-signup">
+    Email: <input id="input-email" name="email" type="email" placeholder="email">
+    Password: <input id="input-pwd" name="pwd" type="password" placeholder="password">
+    <input id="btn-signup" type="submit" value="Create Account">
+    <input id="btn-login" type="submit" value="Login">
+    <input id="btn-logout" type="submit" value="Logout">
+  </form>
+</div>
+</body>
+</html>
