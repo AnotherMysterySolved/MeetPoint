@@ -1,0 +1,22 @@
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#row-1 {
+  margin-top: 13vw;
+}
+
+h1 { 
+  font-size: 8vw;
+}
+
+.start-btn {
+  width: 13vw;
+  height: 5vw;
+  font-size: 2vw;
+  margin: 1vw;
+}
