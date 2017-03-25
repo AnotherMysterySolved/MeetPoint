@@ -16,11 +16,12 @@
   <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Google Map -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX_eXekJVgS9WjggIhZRQbvNXlbFQDsc&libraries=places"></script>
   <!-- Javascript -->
   <script type="text/javascript" src="assets/javascript/logic.js"></script>
-  <script type="text/javascript" src="assets/javascript/matt.js"></script>
+  <!-- <script type="text/javascript" src="assets/javascript/matt.js"></script> -->
 </head>
   <body>
       <!--NAVBAR START-->
@@ -42,7 +43,7 @@
             <li><a href="#">About</a></li>
             <li><a href="#">Contact Us</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Current-User-ID <span class="caret"></span></a>
+              <a href="#" id="nav-display-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Account Settings</a></li>
                 <!--
@@ -50,7 +51,7 @@
                 <li><a href="#">Something else here</a></li>
                 -->
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Sign Out</a></li>
+                <li><a href="#" id="btn-logout">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -63,8 +64,7 @@
       <div class="col-md-4 boxes">
         <div class="panel panel-warning">
           <div class="panel-heading">
-            <h3 class="panel-title">Current Groups</h3>
-            <button id="btn-group-modal">Create a Group!</button>
+            <h3 class="panel-title">Current Groups<span><button id="btn-group-modal">Create a Group!</button></span></h3>
           </div>
           <div class="panel-body">
             <ul id="div-group-list"></ul> 
@@ -89,6 +89,23 @@
               Meeting Purpose: <input type="text" class="form-control" id="input-group-purpose" placeholder="Purpose">
               Looking for: <input type="text" class="form-control" id="input-group-place" placeholder="e.g. cafe, restaurant, bar, etc.">
               <button id="btn-group-form" type="button" class="btn btn-warning start-btn">Create Group</button>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-start-location" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button id="close-start-location" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Where will you be coming from?</h4>
+          </div>
+          <div class="modal-body">
+            <fieldset>
+              Start location: <input type="text" class="form-control" id="input-start-location" placeholder="Address">
+              <button id="btn-start-location" type="button" class="btn btn-warning start-btn">Submit</button>
             </fieldset>
           </div>
         </div>
