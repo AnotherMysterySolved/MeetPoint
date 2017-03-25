@@ -31,7 +31,12 @@ img[class^="group-icon"] {
   margin: 0 0.4vw;
 }
 
+img[class^="group-icon"]:hover {
+ cursor: pointer;
+}
+
 .group-list-item {
+  font-size: 1.5vw;
   padding: 1vw;
   border-bottom: 1px solid #d3d3d3;
 }
@@ -49,6 +54,36 @@ div[id^="info-"] {
   border-bottom: 1px solid #d3d3d3;
 }
 
+
+#groups-heading {
+  font-size: 2vw;
+}
+
+#btn-group-modal {
+  font-size: 1.2vw;
+  background: white;
+  color: orange;
+  border: none;
+  padding: 0.5vw;
+  border-radius: 50px;
+  outline: none;
+}
+
+#btn-group-modal:hover {
+  background: #9975b9;
+  color: white;
+}
+
+.modal-btn {
+  font-size: 1vw;
+  width: 10vw;
+  height: 3vw;
+}
+
+#btn-current-loc {
+  font-size: 0.9vw;
+  line-height: 1vw;
+}
 
 /*/////////////////////////////*/
 
@@ -92,8 +127,4 @@ div[id^="info-"] {
 .panel-heading {
   height: 60px !important;
   padding-top: 1vw !important;
-}
-
-h3 {
-  display: table-cell;
 }

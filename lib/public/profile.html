@@ -21,7 +21,6 @@
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX_eXekJVgS9WjggIhZRQbvNXlbFQDsc&libraries=places"></script>
   <!-- Javascript -->
   <script type="text/javascript" src="assets/javascript/logic.js"></script>
-  <!-- <script type="text/javascript" src="assets/javascript/matt.js"></script> -->
 </head>
   <body>
       <!--NAVBAR START-->
@@ -40,8 +39,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
             <li class="dropdown">
               <a href="#" id="nav-display-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -64,7 +63,7 @@
       <div class="col-md-4 boxes">
         <div class="panel panel-warning">
           <div class="panel-heading">
-            <h3 class="panel-title">Current Groups<span><button id="btn-group-modal">Create a Group!</button></span></h3>
+            <h3 id="groups-heading" class="panel-title">Current Groups<span><button id="btn-group-modal">Create a Group</button></span></h3>
           </div>
           <div class="panel-body">
             <ul id="div-group-list"></ul> 
@@ -88,7 +87,7 @@
               Group Name: <input type="text" class="form-control" id="input-group-name" placeholder="Group name">
               Meeting Purpose: <input type="text" class="form-control" id="input-group-purpose" placeholder="Purpose">
               Looking for: <input type="text" class="form-control" id="input-group-place" placeholder="e.g. cafe, restaurant, bar, etc.">
-              <button id="btn-group-form" type="button" class="btn btn-warning start-btn">Create Group</button>
+              <button id="btn-group-form" type="button" class="btn btn-warning start-btn modal-btn">Create Group</button>
             </fieldset>
           </div>
         </div>
@@ -105,7 +104,8 @@
           <div class="modal-body">
             <fieldset>
               Start location: <input type="text" class="form-control" id="input-start-location" placeholder="Address">
-              <button id="btn-start-location" type="button" class="btn btn-warning start-btn">Submit</button>
+              <button id="btn-start-location" type="button" class="btn btn-warning start-btn modal-btn">Submit</button>
+              <button id="btn-current-loc" type="button" class="btn btn-warning start-btn modal-btn">Use <br>Current Location</button>
             </fieldset>
           </div>
         </div>
