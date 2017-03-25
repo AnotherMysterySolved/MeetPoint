@@ -1,5 +1,6 @@
 body {
-  height: 100%;
+  background-color: white !important;
+  height:100vh;
 }
 
 * {
@@ -22,3 +23,49 @@ h1 {
 }
 
 
+/*/////////////////////////////*/
+
+
+#map {
+  height: 40vw !important;
+}
+
+.boxes {
+  padding: 0px !important;
+  margin-bottom: 0px !important;
+  height: 30vw;
+}
+
+.bus-image {
+  width: 5vw !important;
+  height: auto !important;
+}
+.panel {
+  box-shadow: none;
+}
+
+#group-box {
+  margin-right: 5px !important;
+}
+
+#navigation {
+  margin-bottom: 0px !important;
+}
+
+.btn-expand {
+  background-color: orange;
+  color: white;
+}
+
+#btn-create-group {
+  float: right;
+  display: block;
+}
+
+.panel-heading {
+  height: 60px !important;
+}
+
+h3 {
+  display: table-cell;
+}
