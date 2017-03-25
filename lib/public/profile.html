@@ -62,7 +62,7 @@
         <div class="panel panel-warning">
           <div class="panel-heading">
             <h3 class="panel-title">Current Groups</h3>
-            <button id="btn-create-group">Create a Group!</button>
+            <button id="btn-group-modal">Create a Group!</button>
           </div>
           <div class="panel-body">
                 
@@ -78,15 +78,15 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button id="close-signup" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="close-create-group" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title">Create Group</h4>
           </div>
           <div class="modal-body">
             <fieldset>
-              Group Name: <input type="text" class="form-control" id="input-name" placeholder="Name">
-              Meeting Purpose: <input type="email" class="form-control" id="input-email" placeholder="Email">
-              Place Type: <input type="password" class="form-control" id="input-pwd" placeholder="Password">
-              <button id="btn-signup-form" type="button" class="btn btn-warning start-btn">Sign Up</button>
+              Group Name: <input type="text" class="form-control" id="input-group-name" placeholder="Group name">
+              Meeting Purpose: <input type="text" class="form-control" id="input-group-purpose" placeholder="Purpose">
+              Looking for: <input type="text" class="form-control" id="input-group-place" placeholder="e.g. cafe, restaurant, bar, etc.">
+              <button id="btn-group-form" type="button" class="btn btn-warning start-btn">Create Group</button>
             </fieldset>
           </div>
         </div>
